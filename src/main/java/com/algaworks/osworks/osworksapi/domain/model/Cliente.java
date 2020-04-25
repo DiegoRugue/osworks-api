@@ -1,13 +1,17 @@
 package com.algaworks.osworks.osworksapi.domain.model;
 
+import com.algaworks.osworks.osworksapi.domain.ValidationGroups;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Cliente {
 
+    @NotNull(groups = ValidationGroups.ClienteId.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

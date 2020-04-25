@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 @ControllerAdvice
@@ -25,7 +25,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         var validadeError = new ValidateError();
         validadeError.setStatus(status.value());
         validadeError.setTitulo(ex.getMessage());
-        validadeError.setDataHora(LocalDateTime.now());
+        validadeError.setDataHora(OffsetDateTime.now());
 
         return handleExceptionInternal(ex, validadeError, new HttpHeaders(), status, request);
     }
@@ -45,7 +45,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         var validateError = new ValidateError();
         validateError.setStatus(status.value());
         validateError.setTitulo("Campos não preenchidos corretamente");
-        validateError.setDataHora(LocalDateTime.now());
+        validateError.setDataHora(OffsetDateTime.now());
         validateError.setCampos(campos);
 
         return super.handleExceptionInternal(ex, validateError, headers, status, request);
